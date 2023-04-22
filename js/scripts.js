@@ -1,6 +1,8 @@
-// list of pokemon with their heights and types 
-
-let pokemonList=[
+// this wraps the code in an IIFE to avoid accidentally accessing a global state
+let pokemonRepository = (function () {
+  
+  // list of pokemon with their heights and types 
+  let pokemonList = [
     { name: 'Alakazam', height: 1.5, type: 'psychic'},
     { name: 'Tauros', height: 1.4, type:'normal'},
     { name: 'Clefairy', height: 0.6, type: 'fairy'},
@@ -17,3 +19,15 @@ function listPokemons(pokemon){
     document.write('Wow, that\'s big!' + '<br>');
   }
 }
+
+pokemonList.forEach(listPokemons);
+  
+  return {
+    add: function(pokemon) {
+      pokemonList.push(pokemon);
+    },
+    getAll: function() {
+      return pokemonList;
+    }
+  };
+})();
