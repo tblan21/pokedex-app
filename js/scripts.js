@@ -9,12 +9,11 @@ let pokemonList=[
 
 // the below code writes each pokemon in the list along with its height
 
-let text1 = "  ";
-
-for (let i = 0; i < pokemonList.length; i++){
-  document.write(pokemonList[i].name + text1 + pokemonList[i].height + text1);
+function listPokemons(pokemon){
+  document.write(pokemon.name + " " + pokemon.height + " " + pokemon.type + " " + '<br>')
+  
   // the below conditional highlights the tallest pokemon
-  if (pokemonList[i].height > 1.4){
-    document.write('Wow, that\'s big!' + text1);
+  if (pokemon.height > 1.4){
+    document.write('Wow, that\'s big!' + '<br>');
   }
 }
