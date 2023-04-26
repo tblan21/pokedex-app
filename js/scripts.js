@@ -23,11 +23,14 @@ let pokemonRepository = (function () {
     listItem.appendChild(button);
     unorderedList.appendChild(listItem);
     
+    button.addEventListener('click', showDetails);
   }
-}
 
   pokemonList.forEach(addListItem);
 
+  function showDetails(pokemon){
+    console.log(pokemon);
+  }
   
   return {
     add: function(pokemon) {
