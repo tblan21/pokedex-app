@@ -2,3 +2,13 @@ body {
     font-family: 'Raleway'; sans-serif;
     text-align: center;
 }
+
+/* added styling to the pokemon list */
+.pokemon-list__button {
+    border: 2px #3d0018 solid;
+    font-size: 16px;
+}
+
+.pokemon-list {
+    list-style-type: none;
+  }
