@@ -7,20 +7,27 @@ let pokemonRepository = (function () {
     { name: 'Tauros', height: 1.4, type:'normal'},
     { name: 'Clefairy', height: 0.6, type: 'fairy'},
     { name: 'Bulbasaur', height: 0.7, type: ['grass', 'poison']}
-];
+  ];
 
-// the below code writes each pokemon in the list along with its height
-
-function listPokemons(pokemon){
-  document.write(pokemon.name + " " + pokemon.height + " " + pokemon.type + " " + '<br>')
+// the below function writes each pokemon in the list along with its height
   
-  // the below conditional highlights the tallest pokemon
-  if (pokemon.height > 1.4){
-    document.write('Wow, that\'s big!' + '<br>');
+  function addListItem(pokemon) {
+    // created list items with buttons and added pokemon's names to button
+    let unorderedList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+
+    button.innerText = pokemon.name;
+
+    button.classList.add('pokemon-list__button');
+    listItem.appendChild(button);
+    unorderedList.appendChild(listItem);
+    
   }
 }
 
-pokemonList.forEach(listPokemons);
+  pokemonList.forEach(addListItem);
+
   
   return {
     add: function(pokemon) {
@@ -28,6 +35,7 @@ pokemonList.forEach(listPokemons);
     },
     getAll: function() {
       return pokemonList;
-    }
+    },
+    addListItem: addListItem
   };
 })();
