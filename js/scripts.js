@@ -23,10 +23,10 @@ let pokemonRepository = (function () {
     listItem.appendChild(button);
     unorderedList.appendChild(listItem);
     
-    button.addEventListener('click', showDetails);
+    button.addEventListener('click', ()=>showDetails(pokemon));
   }
 
-  pokemonList.forEach(addListItem);
+  // pokemonList.forEach(addListItem);
 
   function showDetails(pokemon){
     console.log(pokemon);
@@ -44,4 +44,4 @@ let pokemonRepository = (function () {
 })();
 
 pokemonRepository.add({name: 'Pikachu', height: 0.7, type: 'electric'});
-pokemonRepository.getAll().forEach(pokemon => addListItem(pokemon));
+pokemonRepository.getAll().forEach(pokemon => pokemonRepository.addListItem(pokemon));
