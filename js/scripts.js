@@ -6,7 +6,7 @@ let pokemonRepository = (function () {
   let pokemonApiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   
   function addListItem(pokemon) {
-    // created list items with buttons and added pokemon's names to button
+    // this creates list items with buttons and added pokemon's names to button
     let unorderedList = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
@@ -41,7 +41,21 @@ let pokemonRepository = (function () {
     })
   };
 
-  // WIP: modal to show pokemon details
+  // this returns each pokemon's details
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response){
+      return response.json();
+    }).then(function (details){
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch (function (e){
+      console.error(e);
+    });
+  }
+
+  // Modal to show pokemon details
   function showModal(pokemon) {
     let pokemonContainer = document.querySelector('.pokemon-modal');
 
@@ -63,11 +77,11 @@ let pokemonRepository = (function () {
     let contentElement = document.createElement('p');
     contentElement.innerText = 'Height:' + ' ' + pokemon.height;
 
-    let pokemonType = document.createElement('p');
-    pokemonType.innerText = 'Type:' + ' ' + pokemon.type;
+    // let pokemonType = document.createElement('p');
+    // pokemonType.innerText = 'Type:' + ' ' + pokemon.types;
 
     let pokemonImage = document.createElement('img');
-    pokemonImage.src = pokemon.image;
+    pokemonImage.src = pokemon.imageUrl;
 
     pokemonDetails.appendChild(closeButtonElement);
     pokemonDetails.appendChild(titleElement);
@@ -85,19 +99,6 @@ let pokemonRepository = (function () {
       }
     });
     }
-
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(url).then(function (response){
-      return response.json();
-    }).then(function (details){
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-    }).catch (function (e){
-      console.error(e);
-    });
-  }
 
   function showDetails(item) {
     loadDetails(item).then(function (){
@@ -124,14 +125,7 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // let pokemonButton = document.querySelector('.pokemon-list__button');
-
-  // pokemonButton.addEventListener('click', ()=>showDetails(pokemon, pokemon));
-  
-  // document.querySelector('.pokemon-list__button').addEventListener('click', () => {
-  //   showDetails('title', 'content');
-  // });
-
+  // function and event listener to hide the modal
   function hidePokemonDetails() {
     let pokemonContainer = document.querySelector('.pokemon-modal');
 
