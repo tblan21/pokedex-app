@@ -86,7 +86,7 @@ let pokemonRepository = (function () {
     pokemonDetails.appendChild(closeButtonElement);
     pokemonDetails.appendChild(titleElement);
     pokemonDetails.appendChild(contentElement);
-    pokemonDetails.appendChild(pokemonType);
+    // pokemonDetails.appendChild(pokemonType);
     pokemonDetails.appendChild(pokemonImage);
     pokemonContainer.appendChild(pokemonDetails);
 
