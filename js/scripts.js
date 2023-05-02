@@ -77,8 +77,8 @@ let pokemonRepository = (function () {
     let contentElement = document.createElement('p');
     contentElement.innerText = 'Height:' + ' ' + pokemon.height;
 
-    // let pokemonType = document.createElement('p');
-    // pokemonType.innerText = 'Type:' + ' ' + pokemon.types;
+    let pokemonType = document.createElement('p');
+    pokemonType.innerText = 'Type:' + ' ' + pokemon.types[0].type.name;
 
     let pokemonImage = document.createElement('img');
     pokemonImage.src = pokemon.imageUrl;
@@ -86,7 +86,7 @@ let pokemonRepository = (function () {
     pokemonDetails.appendChild(closeButtonElement);
     pokemonDetails.appendChild(titleElement);
     pokemonDetails.appendChild(contentElement);
-    // pokemonDetails.appendChild(pokemonType);
+    pokemonDetails.appendChild(pokemonType);
     pokemonDetails.appendChild(pokemonImage);
     pokemonContainer.appendChild(pokemonDetails);
 
