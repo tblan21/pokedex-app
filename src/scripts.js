@@ -32,8 +32,9 @@ let pokemonRepository = (function () {
 
     let button = document.createElement('button');
     button.innerText = pokemon.name;
+    button.classList.add('pokemon-item');
     button.classList.add('btn');
-    button.classList.add('btn-primary');
+    button.classList.add('btn-light');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#exampleModal');
 
@@ -105,6 +106,26 @@ let pokemonRepository = (function () {
 
   }  
 
+  // this allows the user to search for a pokemon
+  let searchInput = document.querySelector('#search-input');
+  searchInput.addEventListener('input', function() {
+    pokemonRepository.searchPokemon(searchInput);
+  });
+
+  function searchPokemon(searchInput) {
+    let searchValue = searchInput.value.toLowerCase();
+
+    let filteredPokemon = pokemonList.filter(function (pokemon){
+      return pokemon.name.toLowerCase().indexOf(searchValue) > -1;
+    });
+
+    let pokemonListElement = document.querySelector('.pokemon-list');
+    pokemonListElement.innerHTML = "";
+    filteredPokemon.forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
+  }
+
   return {
     add: add,
     getAll: getAll,
@@ -113,6 +134,7 @@ let pokemonRepository = (function () {
     loadDetails: loadDetails,
     showDetails: showDetails,
     showModal: showModal,
+    searchPokemon: searchPokemon,
   };
 })();
 
